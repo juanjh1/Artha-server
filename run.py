@@ -48,12 +48,12 @@ if __name__ == "__main__":
     parser.add_argument("-r" ,
                         "--run_server", 
                         action="store_true", 
-                        help="run server")
+                        help="Run server")
 
     parser.add_argument("-c" ,
                         "--create_user", 
                         action="store_true", 
-                        help="run server")
+                        help="Create super user")
 
     args:Namespace = parser.parse_args()
 
