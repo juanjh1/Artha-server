@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from .apps import APPS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,19 +32,8 @@ ALLOWED_HOSTS: list[str] = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    #installed apps
-    'rest_framework',
-    'exercise',
-    'judge',
-    'submission'
-]
+INSTALLED_APPS: list[str] = APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,6 +68,7 @@ WSGI_APPLICATION = 'artha.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+## WE NEED CHANGE THAT DON'T MATTER HERE BUT IN PRODUCTION IS IMPORTANT
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -110,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC-4'
 
 USE_I18N = True
 
@@ -126,3 +118,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JUDGUE_URL = ""
+
+if DEBUG :
+    JUDGUE_URL = "http://localhost:2358"
+else:
+    JUDGUE_URL = "http://example.exmple"
