@@ -125,3 +125,8 @@ if DEBUG :
     JUDGUE_URL = "http://localhost:2358"
 else:
     JUDGUE_URL = "http://example.exmple"
+
+## THATS NEED ATENTION
+MIN_SCORE = 1
+MAX_SCORE = 10
+
