@@ -2,10 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
+from rank.models import Rank
+
 
 class Category(models.Model):
     name: models.CharField
     slug: models.SlugField
+    user: models.ForeignKey
     description: models.TextField
     created_at: models.DateTimeField
     updated_at: models.DateTimeField
@@ -18,6 +21,13 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True, null=False, blank=False)
     is_active  = models.BooleanField(default=True)
+    user = models.ForeignKey(
+                             User, 
+                             on_delete=models.CASCADE,
+                             null= False, 
+                             blank=False
+                            )
+    
 
     def save(self, *args, **kwargs)-> None:
         self._set_slug()
@@ -38,14 +48,17 @@ class Visibility (models.TextChoices):
 
 
 class Exercise (models.Model):
-    name: models.CharField
-    slug: models.SlugField
-    description: models.TextField
-    created_by: models.ForeignKey
-    category:  models.ForeignKey
-    created_at: models.DateTimeField
-    updated_at : models.DateTimeField
-    visibility: models.CharField
+    name        : models.CharField
+    slug        : models.SlugField
+    user        : models.ForeignKey
+    description : models.TextField
+    created_by  : models.ForeignKey
+    category    : models.ForeignKey
+    created_at  : models.DateTimeField
+    updated_at  : models.DateTimeField
+    visibility  : models.CharField
+    rank        : models.ForeignKey
+    
 
     name = models.CharField(max_length=80, unique=True,null=False)
     slug = models.SlugField(unique=True, blank=False, null=False)
@@ -67,6 +80,20 @@ class Exercise (models.Model):
                                     null=False, 
                                     default=Visibility.ARCHIVED
                                  )
+    
+    user = models.ForeignKey(
+                             User, 
+                             on_delete=models.CASCADE,
+                             null= False, 
+                             blank=False
+                            )
+    
+    rank = models.ForeignKey(
+                             Rank,
+                             on_delete= models.CASCADE,
+                             null= False,
+                             blank= False
+                             )
 
     def save(self, *args , **kwargs)-> None:
         self._set_slug()
