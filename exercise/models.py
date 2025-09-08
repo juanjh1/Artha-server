@@ -2,10 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
-# Create your models here.
 
 class Category(models.Model):
-
     name: models.CharField
     slug: models.SlugField
     description: models.TextField
@@ -15,10 +13,10 @@ class Category(models.Model):
 
 
     name = models.CharField(max_length=50, unique=True,null=False)
-    slug = models.SlugField(unique=True, blank=True)
-    description = models.TextField(blank=True)
+    slug = models.SlugField(unique=True, blank=True, null= False)
+    description = models.TextField(blank=True, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True, null=False, blank=False)
     is_active  = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs)-> None:
@@ -50,7 +48,7 @@ class Exercise (models.Model):
     visibility: models.CharField
 
     name = models.CharField(max_length=80, unique=True,null=False)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=False, null=False)
     description = models.TextField(null=False)
     created_by = models.ForeignKey(
                                     to=User, 
@@ -62,8 +60,8 @@ class Exercise (models.Model):
                                     on_delete=models.CASCADE, 
                                     related_name='exercises'
                                  )
-    created_at = models.DateTimeField(auto_now_add=True, null=False)
-    updated_at = models.DateTimeField(auto_now=True, null=False)
+    created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+    updated_at = models.DateTimeField(auto_now=True, null=False, blank=False)
     visibility = models.CharField(
                                     choices=Visibility, 
                                     null=False, 
@@ -91,3 +89,4 @@ class Exercise (models.Model):
             models.Index(fields=['created_by']),
             models.Index(fields=['category'])
         ]
+    

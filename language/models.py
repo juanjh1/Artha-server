@@ -7,7 +7,7 @@ class Language(models.Model):
     name: models.CharField
     exercises: models.ManyToManyField
 
-    name = models.CharField(max_length=50, unique=True, null=False)
+    name = models.CharField(max_length=50, unique=True, null=False, blank=False)
     exercises = models.ManyToManyField(Exercise, through="ExerciseLanguage")
 
 
@@ -39,17 +39,22 @@ class ExerciseLanguage(models.Model):
     exercise = models.ForeignKey(   
                                     to=Exercise, 
                                     on_delete=models.CASCADE,
-                                    related_name="exercise_language" )
+                                    related_name="exercise_language",
+                                    null=False,
+                                    blank=False
+                                )
     language = models.ForeignKey(
                                 to=Language,
                                 on_delete=models.CASCADE,
-                                related_name="exercise_language"
+                                related_name="exercise_language",
+                                null=False,
+                                blank=False
                                 )
-    preloaded = models.TextField(null=False)
-    test_cases = models.TextField(null=False)
+    preloaded = models.TextField(null=False, blank=False)
+    test_cases = models.TextField(null=False, blank=False)
     test_example_case = models.TextField(null=False, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_created=True)
+    created_at = models.DateTimeField(auto_now_add=True, null= False, blank=False)
+    updated_at = models.DateTimeField(auto_created=True, null=False, blank=False)
     timeout = models.IntegerField(
                                     choices=TimeLimit,
                                     default=TimeLimit.LOW
