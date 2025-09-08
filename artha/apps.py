@@ -12,7 +12,8 @@ PROJECT_APPS: list[str] = [
     'exercise',
     'judge',
     'submission',
-    'language'
+    'language',
+    'rank'
 ]
 
 
