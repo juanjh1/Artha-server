@@ -5,7 +5,7 @@ Please follow these guidelines to keep the project clean and consistent.
 
 ---
 
-## 📌 How to Contribute
+## How to Contribute
 1. Fork the repo and create your branch from `main`:
    ```bash
    git checkout -b feat/my-feature
