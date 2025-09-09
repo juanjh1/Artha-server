@@ -1,6 +1,7 @@
-Contributing to Artha Server
+# Contributing to Artha Server
 
 Thanks for your interest in contributing.  
+
 Please follow these guidelines to keep the project clean and consistent.  
 
 ---
@@ -40,8 +41,10 @@ Keep PRs small and focused (avoid big bang changes).
 Add a clear description of what and why.
 
 Link related issues (Closes #123).
-### Tests
-New features must include tests.
+
+## Tests
+
+New features should include tests.
 
 Run all tests before submitting a PR:
 ``
