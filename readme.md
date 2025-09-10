@@ -175,7 +175,11 @@ python manage.py migrate
 pip install --upgrade -r requirements.txt
 ```
 
+## Contributing
 
 - [Contributing](https://github.com/juanjh1/Artha-server?tab=contributing-ov-file)
 
+## License
+
+This is free software licensed under [Apache-2.0](https://github.com/juanjh1/Artha-server?tab=Apache-2.0-1-ov-file)
 
