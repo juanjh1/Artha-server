@@ -30,7 +30,6 @@ jobs:
         mypy .
     - name: check styles 
       run: | 
-        ruff init
         ruff check .
     - name: Static Checks
       run: | 
