@@ -13,12 +13,14 @@ PROJECT_APPS: list[str] = [
     'judge',
     'submission',
     'language',
-    'rank'
+    'rank',
+    'user'
 ]
 
 
 EXTERNAL_APPS: list[str] = [
-    'rest_framework',  
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 
