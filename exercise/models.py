@@ -52,7 +52,6 @@ class Exercise (models.Model):
     slug        : models.SlugField
     user        : models.ForeignKey
     description : models.TextField
-    created_by  : models.ForeignKey
     category    : models.ForeignKey
     created_at  : models.DateTimeField
     updated_at  : models.DateTimeField
@@ -63,11 +62,6 @@ class Exercise (models.Model):
     name = models.CharField(max_length=80, unique=True,null=False)
     slug = models.SlugField(unique=True, blank=False, null=False)
     description = models.TextField(null=False)
-    created_by = models.ForeignKey(
-                                    to=User, 
-                                    on_delete=models.CASCADE, 
-                                    related_name='exercises'
-                                  )
     category  = models.ForeignKey(
                                     to=Category, 
                                     on_delete=models.CASCADE, 
@@ -113,7 +107,7 @@ class Exercise (models.Model):
         indexes = [
             models.Index(fields=['name']),
             models.Index(fields=['slug']),
-            models.Index(fields=['created_by']),
+            models.Index(fields=['user']),
             models.Index(fields=['category'])
         ]
     
