@@ -189,12 +189,7 @@ python manage.py migrate
 pip install --upgrade -r requirements.txt
 ```
 
-## Contribución
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Crea un Pull Request
+- [Contributing](https://github.com/juanjh1/Artha-server?tab=contributing-ov-file)
 
-## Licencia
+
