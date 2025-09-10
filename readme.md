@@ -1,25 +1,11 @@
-# Artha - Sistema de Evaluación de Código
+# Artha Server
 
-Artha es un sistema de evaluación de código desarrollado con Django y Django REST Framework que utiliza Judge0 como motor de ejecución de código.
 
 ## Requisitos Previos
 
 - Python 3.11+
 - Docker y Docker Compose
 - Git
-
-## Estructura del Proyecto
-
-```
-artha/
-├── artha/              # Configuración principal de Django
-├── judge/              # Aplicación para gestión de jueces
-├── submission/         # Aplicación para gestión de envíos
-├── run.py             # Script de automatización
-├── docker-compose.yml # Configuración de Judge0
-├── judge0.conf        # Configuración de Judge0
-└── requirements.txt   # Dependencias de Python
-```
 
 ## Instalación
 
