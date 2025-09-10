@@ -177,7 +177,7 @@ pip install --upgrade -r requirements.txt
 
 ## Contributing
 
-- [Contributing](https://github.com/juanjh1/Artha-server?tab=contributing-ov-file)
+- [Contributing](https://github.com/juanjh1/Artha-server?tab=contributing-ov-file#contributing-to-artha-server)
 
 ## License
 
