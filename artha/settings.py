@@ -35,6 +35,10 @@ ALLOWED_HOSTS: list[str] = []
 INSTALLED_APPS: list[str] = APPS
 
 
+
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,7 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = "UTC"
+
 
 USE_I18N = True
 
@@ -129,4 +134,3 @@ else:
 ## THATS NEED ATENTION
 MIN_SCORE = 1
 MAX_SCORE = 10
-

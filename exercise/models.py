@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
@@ -29,16 +31,16 @@ class Category(models.Model):
                             )
     
 
-    def save(self, *args, **kwargs)-> None:
+    def save(self, *args: Any, **kwargs:Any)-> None:
         self._set_slug()
         super().save(*args, **kwargs)
     
     def _set_slug(self)-> None:
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(str(self.name))
 
     def __str__(self) -> str:
-        return self.name  
+        return str(self.name)  
 
 
 class Visibility (models.TextChoices):
@@ -89,7 +91,7 @@ class Exercise (models.Model):
                              blank= False
                              )
 
-    def save(self, *args , **kwargs)-> None:
+    def save(self, *args:Any, **kwargs: Any)-> None:
         self._set_slug()
         super().save(*args, **kwargs)
 
@@ -98,7 +100,7 @@ class Exercise (models.Model):
             self.slug = slugify(self.name)
 
     def __str__(self)-> str:
-        return self.name
+        return str(self.name)
 
     class Meta:
         ordering = ['-created_at']
