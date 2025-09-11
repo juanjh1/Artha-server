@@ -1,12 +1,13 @@
 from user.domain.entities.User import User
 from user.infrastructure.models import UserModel
 
+
 class UserMapper:
     @staticmethod
     def to_entity(user_model: UserModel) -> User:
         return User(
             id=user_model.id,
-            rank_id=user_model.rank.id if user_model.rank else None,
+            rank_id=user_model.rank.id,
             score=user_model.score,
             completed_problems=user_model.completed_problems,
             created_at=user_model.created_at,

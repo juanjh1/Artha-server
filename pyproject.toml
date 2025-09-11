@@ -5,4 +5,4 @@ exclude =["migrations"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "TID", "ANN"] 
-ignore = ["ANN101", "ANN102", "ANN003", "ANN002"]
+ignore = ["ANN101", "ANN102", "ANN003", "ANN002", "ANN401"]

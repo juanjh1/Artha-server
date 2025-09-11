@@ -1,9 +1,10 @@
 from datetime import datetime
 
+
 class User:
     def __init__(self, id: int, rank_id: int, score: int, completed_problems: int,
                  created_at: datetime, last_active: datetime,
-                 avatar: str, status: bool, email: str, password: str):
+                 avatar: str, status: bool, email: str, password: str)-> None:
         self.id = id
         self.rank_id = rank_id
         self.score = score
