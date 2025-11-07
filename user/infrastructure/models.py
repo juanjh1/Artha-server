@@ -1,27 +1,75 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 from rank.models import Rank
 
 
 class UserModel(AbstractUser):
-    id                 : models.IntegerField
+    
     avatar             : models.URLField
     score              : models.IntegerField
     completed_problems : models.IntegerField
-    status             : models.BooleanField
-    created_at         : models.DateTimeField
-    last_active        : models.DateTimeField
+    rank               : models.ForeignKey
 
-    id = models.IntegerField(primary_key=True)
-    avatar = models.URLField(blank=True, null=True)
-    score = models.IntegerField(default=0)
+    avatar             = models.URLField(blank=True, null=True)
+    score              = models.IntegerField(default=0)
     completed_problems = models.IntegerField(default=0)
-    status = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    last_active = models.DateTimeField(auto_now=True)
-    
-    rank = models.ForeignKey(Rank, on_delete=models.SET_NULL, null=False, blank=False)
+    rank               = models.ForeignKey(Rank, 
+                                           on_delete=models.CASCADE, 
+                                           null=False, 
+                                           blank=False)
 
     def __str__(self) -> str:
         return str(self.email)
+    
+    @staticmethod
+    def get_user_by_email(email:str) -> "UserModel":
+        
+        return get_object_or_404(UserModel,email=email)
+    
+    @staticmethod
+    def get_user_by_username(username:str)-> "UserModel":
+        
+        return get_object_or_404(UserModel,username=username)
+      
+    @staticmethod
+    def validate_user_existence(
+                                email: str | None = None,\
+                                username: str | None = None\
+                                ) -> "UserModel" :
+        from django.http import Http404
+        
+
+        try:
+
+            if(email is not None):
+            
+                return UserModel.get_user_by_email(email)
+        
+            if(username is not None):
+            
+                return UserModel.get_user_by_username(username) 
+        
+        except UserModel.DoesNotExist:
+            
+            raise Http404('User don\'t exist') 
+
+            
+
+        raise Http404('Email and username void, try again whit correct values') 
+
+        
+    class Meta:
+       
+        ordering = ['-date_joined']
+        
+        verbose_name = 'User'
+        
+        verbose_name_plural = 'Users'
+        
+        indexes = [
+            models.Index(fields=['username']),
+            models.Index(fields=['rank']),
+        ]
+    
