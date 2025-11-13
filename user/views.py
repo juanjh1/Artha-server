@@ -1,18 +1,20 @@
-from django.contrib.auth.hashers import check_password
 from django.http import Http404
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView, Request
 
 from user.infrastructure.models import UserModel
-from user.utils.jwtUtils import get_tokens_for_user
 
 
 class LoginView(APIView):
     
     def post(self, request: Request)-> Response:
         
+        from django.contrib.auth.hashers import check_password
+
         from user.application.serializer import LoginSerializer
+        from user.utils.jwtUtils import get_tokens_for_user
 
         serializer : LoginSerializer = LoginSerializer(data = request.data)
         
@@ -86,3 +88,8 @@ class RegisterView(APIView):
 
         return Response(status=status.HTTP_200_OK)
 
+
+
+class LogoutView(APIView):
+    
+      permission_classes = [IsAuthenticated]

@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.shortcuts import get_object_or_404
 
-from rank.models import Rank
+from rank.infrastructure.models import Rank
 
 
 class UserModel(AbstractUser):
@@ -26,6 +26,11 @@ class UserModel(AbstractUser):
         
         return str(self.email)
     
+
+    def set_rank(self, rank: Rank) -> None:
+        self.rank = rank.pk
+        self.save()
+        
     @staticmethod
     def get_user_by_email(email:str) -> "UserModel":
         
