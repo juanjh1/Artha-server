@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 
 from artha.settings import MAX_SCORE, MIN_SCORE
@@ -29,14 +30,22 @@ class Rank(models.Model):
     def get_rank_by_name(name: str) -> 'Rank':
         
        return get_object_or_404(Rank, name=name) 
-
+    
 
     @staticmethod 
-    def rank_exist(name: str) -> bool:
+    def rank_name_exist(name: str) -> bool:
 
         return Rank.objects.filter(name=name).exists()
-    
         
+    @staticmethod
+    def position_exist(pos: int) -> bool:
+        
+        return Rank.objects.filter(position=pos).exists()
+
+    @staticmethod
+    def get_all_ranks()->QuerySet["Rank", "Rank"]:
+
+        return Rank.objects.all()
 
     class Meta:
        
