@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.text import slugify
 
-from rank.models import Rank
+from rank.infrastructure.models import Rank
 
 
 class Category(models.Model):
